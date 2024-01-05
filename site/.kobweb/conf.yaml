@@ -1,0 +1,14 @@
+site:
+  title: "KobwebPersonalPage"
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/dist/js/developmentExecutable/personal_page.js"
+      api: "build/libs/personal_page.jar"
+    prod:
+      script: "build/dist/js/productionExecutable/personal_page.js"
+      siteRoot: ".kobweb/site"
+
+  port: 8080
