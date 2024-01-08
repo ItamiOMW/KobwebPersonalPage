@@ -2,8 +2,6 @@ package com.itami.personal_page
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.itami.personal_page.theme.Font
-import com.itami.personal_page.theme.SiteFonts
 import com.itami.personal_page.theme.Theme
 import com.varabyte.kobweb.compose.ui.modifiers.minHeight
 import com.varabyte.kobweb.core.App
@@ -13,7 +11,6 @@ import com.varabyte.kobweb.silk.components.style.common.SmoothColorStyle
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.init.InitSilk
 import com.varabyte.kobweb.silk.init.InitSilkContext
-import com.varabyte.kobweb.silk.theme.MutableSilkTheme
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import com.varabyte.kobweb.silk.theme.colors.palette.button
 import kotlinx.browser.localStorage
@@ -39,6 +36,10 @@ fun MyApp(content: @Composable () -> Unit) {
 @InitSilk
 fun overrideSilkTheme(ctx: InitSilkContext) {
     ctx.apply {
+        config.apply {
+            initialColorMode = localStorage.getItem(COLOR_MODE_KEY)?.let { ColorMode.valueOf(it) } ?: ColorMode.LIGHT
+        }
+
         theme.apply {
             palettes.light.apply {
                 val lightColors = Theme.Colors[ColorMode.LIGHT]
